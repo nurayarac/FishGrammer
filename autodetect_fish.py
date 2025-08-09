@@ -17,15 +17,15 @@ import cv2
 import os
 
 # Video dosyasının yolunu belirtin
-VIDEO_FILE_PATH = "/content/GX020181.MP4 - VLC ortam oynatıcısı 2024-07-30 13-09-59.mp4"  # Kendi video dosya yolunuzu buraya yazın
-IMAGE_DIR_PATH = "/content/images"  # Çıkartılan görüntülerin kaydedileceği dizin yolunu buraya yazın
-FRAME_STRIDE = 10  # Kaç karede bir görüntü çıkarılacağını belirtir
+VIDEO_FILE_PATH = "/content/GX020181.MP4 - VLC ortam oynatıcısı 2024-07-30 13-09-59.mp4" 
+IMAGE_DIR_PATH = "/content/images" 
+FRAME_STRIDE = 10  
 
-# Görüntülerin saklanacağı dizini oluşturun
+
 if not os.path.exists(IMAGE_DIR_PATH):
     os.makedirs(IMAGE_DIR_PATH)
 
-# Video dosyasını işleyin
+
 video_name = os.path.splitext(os.path.basename(VIDEO_FILE_PATH))[0]
 video_capture = cv2.VideoCapture(VIDEO_FILE_PATH)
 
@@ -113,18 +113,18 @@ len(dataset)
 
 import supervision as sv
 
-# Tanımlamalar
-SAMPLE_SIZE = 10  # Örneklemek istediğiniz görüntü sayısı
-SAMPLE_GRID_SIZE = (2, 5)  # Görüntülerin düzenleneceği grid boyutu
-SAMPLE_PLOT_SIZE = (10, 10)  # Her bir görüntünün boyutu
 
-# Dataset'ten görüntü isimlerini alın
+SAMPLE_SIZE = 10  
+SAMPLE_GRID_SIZE = (2, 5)  
+SAMPLE_PLOT_SIZE = (10, 10) 
+
+
 image_names = list(dataset.images.keys())[:SAMPLE_SIZE]
 
-# BoxAnnotator oluşturun
+
 box_annotator = sv.BoxAnnotator()
 
-# Görüntüleri işleyin
+
 images = []
 for image_name in image_names:
     image = dataset.images[image_name]
@@ -138,7 +138,7 @@ for image_name in image_names:
         labels=labels)
     images.append(annotates_image)
 
-# Görüntüleri grid şeklinde görselleştirin
+
 sv.plot_images_grid(
     images=images,
     titles=image_names,
